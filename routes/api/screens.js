@@ -72,6 +72,49 @@ router.delete('/delete/:id',
     }
 );
 
+router.post('/book/:id',
+    (req,res) => {
+        const book = {};
+        book.user = req.body.user;
+        book.movie = req.body.movie;
+        book.payment = req.body.payment;
+        book.venue_date = req.body.date;
+        book.price = req.body.price;
+        book.screen_type = req.body.screen_type;
+        book.seat_no = req.body.seat_no;
+
+        Screen.findOne({ _id:req.params.id }).then(screen => {
+            if(screen){
+                Screen.findOneAndUpdate(
+                    { _id:req.params.id },
+                    {$push: {
+                        "ticket_details": {
+                            user: book.user,
+                            movie: book.movie,
+                            payment: book.payment,
+                            venue_date: book.venue_date,
+                            price: book.price,
+                            screen_type: book.screen_type,
+                            seat_no: book.seat_no
+                        }
+                    }},
+                    {new: true}
+                )
+                .then(screen => {
+                    if(screen)
+                        res.json(screen)
+                    else
+                        res.status(404).json({default: 'Screen does not exists'})
+                })
+
+            } else {
+                errors.name = 'Screen does not exists';
+                return res.status(400).json(errors);
+            }
+        })
+    }
+);
+
 router.get('/all',
     (req,res) => {
         const errors = {};

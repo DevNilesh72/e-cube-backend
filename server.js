@@ -8,6 +8,7 @@ const users = require('./routes/api/users');
 const movies = require('./routes/api/movies');
 const screens = require('./routes/api/screens');
 const categories = require('./routes/api/categorys');
+const payment = require('./routes/api/payment');
 
 const app = express();
 
@@ -51,3 +52,4 @@ app.use('/api/users', users);
 app.use('/api/movies', movies);
 app.use('/api/screens', screens);
 app.use('/api/category', categories);
+app.use('/api/order', payment);

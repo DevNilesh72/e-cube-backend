@@ -31,6 +31,10 @@ const ScreenSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'movies'
         },
+        payment: {
+            type: Schema.Types.ObjectId,
+            ref: 'payment'
+        },
         venue_date: {
             type: Date,
             required: true

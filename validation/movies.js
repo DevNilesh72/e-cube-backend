@@ -10,7 +10,7 @@ module.exports = function validateMovieDetails(data){
     data.poster = !isEmpty(data.poster) ? data.poster : '';
     data.thumbnail = !isEmpty(data.thumbnail) ? data.thumbnail : '';
 
-    if (!Validator.isEmpty(data.name)) {
+    if (Validator.isEmpty(data.name)) {
         errors.name = 'Name is required';
     }
 
@@ -20,14 +20,6 @@ module.exports = function validateMovieDetails(data){
 
     if (!Validator.isDate(data.release_date)) {
         errors.release_date = 'Invalid Date';
-    }
-
-    if (!Validator.isEmpty(data.poster)) {
-        errors.poster = 'Poster is required';
-    }
-
-    if (!Validator.isEmpty(data.thumbnail)) {
-        errors.thumbnail = 'Thumbnail is required';
     }
 
     return {

@@ -47,6 +47,10 @@ const MovieSchema = new Schema({
         amount: {
             type: Number,
             required: true
+        },
+        active: {
+            type: Boolean,
+            default: true
         }
     }]
 });
